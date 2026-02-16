@@ -51,14 +51,14 @@ export default function Footer() {
   const [open, setOpen] = useState<string | null>(null);
 
   return (
-    <footer className="bg-slate-900 text-slate-300 border-t border-slate-800/50">
+    <footer className="border-t border-[color:var(--border)] bg-[color:var(--surface-strong)] text-[color:var(--foreground)]">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         {/* Brand + social */}
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <Link href="/" className="flex items-center gap-2">
             <Sparkles className="w-7 h-7 text-indigo-400" />
-            <span className="text-2xl font-bold text-white">GhaythApp</span>
+            <span className="text-2xl font-bold text-[color:var(--heading)]">GhaythApp</span>
           </Link>
 
           <div className="flex gap-3">
@@ -68,7 +68,7 @@ export default function Footer() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded hover:bg-slate-800 transition"
+                className="p-2 rounded-xl hover:bg-[color:var(--surface)] transition"
                 aria-label={s.name}
               >
                 <s.icon  />
@@ -81,13 +81,13 @@ export default function Footer() {
         <div className="hidden md:grid grid-cols-3 gap-12 mt-12">
           {Object.entries(footerLinks).map(([section, links]) => (
             <div key={section}>
-              <h3 className="text-sm font-semibold text-white uppercase mb-4">{section}</h3>
+              <h3 className="text-sm font-semibold text-[color:var(--heading)] uppercase mb-4">{section}</h3>
               <ul className="space-y-2">
                 {links.map(l => (
                   <li key={l.name}>
                     <Link
                       href={l.href}
-                      className="hover:text-white transition-colors"
+                      className="hover:text-[color:var(--heading)] transition-colors"
                     >
                       {l.name}
                     </Link>
@@ -108,7 +108,7 @@ export default function Footer() {
                   onClick={() => setOpen(isOpen ? null : section)}
                   className="flex w-full items-center justify-between text-left py-2"
                 >
-                  <span className="font-semibold uppercase text-white">{section}</span>
+                  <span className="font-semibold uppercase text-[color:var(--heading)]">{section}</span>
                   <ChevronDown
                     className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
                   />
@@ -118,7 +118,7 @@ export default function Footer() {
                   <ul className="mt-2 pl-4 space-y-2">
                     {links.map(l => (
                       <li key={l.name}>
-                        <Link href={l.href} className="hover:text-white transition-colors">{l.name}</Link>
+                        <Link href={l.href} className="hover:text-[color:var(--heading)] transition-colors">{l.name}</Link>
                       </li>
                     ))}
                   </ul>
@@ -129,7 +129,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-slate-800/50 mt-12 pt-6 text-sm flex flex-col md:flex-row justify-between text-slate-500">
+        <div className="border-t border-[color:var(--border)] mt-12 pt-6 text-sm flex flex-col md:flex-row justify-between text-slate-500">
           <p>© 2026 GhaythApp. All rights reserved.</p>
           <div className="flex gap-4 mt-2 md:mt-0">
             <Link href="/privacy" className="hover:text-slate-300">Privacy</Link>

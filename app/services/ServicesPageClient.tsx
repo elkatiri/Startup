@@ -1,16 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Globe,
   Smartphone,
   Layers,
-  Rocket,
   Box,
   Check,
   X,
 } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
+import mobileService from '@/public/mobileService.webp';
+import webService from '@/public/webService.webp';
+import saasService from '@/public/saasService.webp';
+import customService from '@/public/customService.webp';
 import { Section } from '../components/ui/section';
 import { GlassCard } from '../components/ui/glass-card';
 
@@ -40,14 +45,6 @@ const services = [
     benefits: ['Auth, billing, teams', 'Multi-tenant architecture', 'Admin and analytics', 'Iterate with agility'],
   },
   {
-    id: 'startup',
-    title: 'Startup Launch Packages',
-    icon: Rocket,
-    headline: 'End-to-end product launch',
-    body: 'Discovery, design, development, and launch in one package. Ideal for pre-seed and seed-stage founders who want one trusted partner.',
-    benefits: ['Fixed scope and timeline', 'Design + dev in sync', 'Launch and handoff', 'Post-launch support options'],
-  },
-  {
     id: 'custom',
     title: 'Custom Platforms',
     icon: Box,
@@ -67,6 +64,18 @@ const comparison = [
 ];
 
 export function ServicesPageClient() {
+  const [expandedImage, setExpandedImage] = useState<string | null>(null);
+
+  const getServiceImage = (id: string) => {
+    switch (id) {
+      case 'web': return webService;
+      case 'mobile': return mobileService;
+      case 'saas': return saasService;
+      case 'custom': return customService;
+      default: return webService;
+    }
+  };
+
   return (
     <>
       <Section className="px-4 pt-16 pb-20 md:pt-24 md:pb-28">
@@ -126,9 +135,19 @@ export function ServicesPageClient() {
                   ))}
                 </ul>
               </div>
+
               <div className="flex-1">
-                <GlassCard className="aspect-video flex items-center justify-center bg-slate-800/50">
-                  <service.icon className="w-20 h-20 text-indigo-500/30" />
+                <GlassCard
+                  className="aspect-video overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300 relative"
+                  onClick={() => setExpandedImage(service.id)}
+                >
+                  <Image
+                    src={getServiceImage(service.id)}
+                    alt={service.title}
+                    fill
+                    className="object-contain p-6 md:p-8"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </GlassCard>
               </div>
             </motion.div>
@@ -136,82 +155,34 @@ export function ServicesPageClient() {
         </Section>
       ))}
 
-      {/* Why choose us */}
-      <Section className="px-4 py-20 md:py-28 bg-slate-900/30 border-y border-slate-800/50">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl font-bold text-white text-center"
-          >
-            Why choose GhaythApp
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-4 text-slate-400 text-center"
-          >
-            Compared to freelancers and traditional agencies
-          </motion.p>
+      {/* Image Lightbox Modal */}
+      <AnimatePresence>
+        {expandedImage && (
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 rounded-2xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-xl overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
+            onClick={() => setExpandedImage(null)}
           >
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[500px]">
-                <thead>
-                  <tr className="border-b border-slate-700/50">
-                    <th className="text-left py-4 px-6 text-slate-400 font-medium">Feature</th>
-                    <th className="text-center py-4 px-6 text-indigo-400 font-medium">GhaythApp</th>
-                    <th className="text-center py-4 px-6 text-slate-400 font-medium">Freelancers</th>
-                    <th className="text-center py-4 px-6 text-slate-400 font-medium">Agencies</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {comparison.map((row, i) => (
-                    <tr
-                      key={row.item}
-                      className={`border-b border-slate-700/30 ${i % 2 === 1 ? 'bg-slate-800/20' : ''}`}
-                    >
-                      <td className="py-4 px-6 text-slate-200">{row.item}</td>
-                      <td className="py-4 px-6 text-center">
-                        {row.us ? <Check className="w-5 h-5 text-indigo-400 mx-auto" /> : <X className="w-5 h-5 text-slate-500 mx-auto" />}
-                      </td>
-                      <td className="py-4 px-6 text-center">
-                        {row.freelancers ? <Check className="w-5 h-5 text-slate-500 mx-auto" /> : <X className="w-5 h-5 text-slate-600 mx-auto" />}
-                      </td>
-                      <td className="py-4 px-6 text-center">
-                        {row.agencies ? <Check className="w-5 h-5 text-slate-500 mx-auto" /> : <X className="w-5 h-5 text-slate-600 mx-auto" />}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-6xl max-h-[90vh] aspect-video"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Image
+                src={getServiceImage(expandedImage)}
+                alt="Expanded view"
+                fill
+                className="object-contain"
+                sizes="90vw"
+              />
+            </motion.div>
           </motion.div>
-        </div>
-      </Section>
-
-      <Section className="px-4 py-16 md:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto text-center"
-        >
-          <p className="text-slate-400">Ready to start your project?</p>
-          <Link
-            href="/contact"
-            className="mt-4 inline-flex items-center justify-center rounded-xl bg-indigo-500 px-6 py-3 font-semibold text-white hover:bg-indigo-400 transition"
-          >
-            Get in touch
-          </Link>
-        </motion.div>
-      </Section>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -16,6 +16,7 @@ import {
 import { Section } from '../components/ui/section';
 import { GlassCard } from '../components/ui/glass-card';
 import { TechIcon } from '../components/ui/tech-icons';
+import Image from 'next/image';
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 const container = { visible: { transition: { staggerChildren: 0.08 } } };
@@ -39,15 +40,15 @@ const processSteps = [
 ];
 
 const portfolioItems = [
-  { title: 'FinTech Dashboard', tag: 'SaaS', desc: 'Real-time analytics and reporting platform.' },
-  { title: 'E-commerce Brand', tag: 'E-commerce', desc: 'High-converting store with custom checkout.' },
-  { title: 'Health & Fitness App', tag: 'Mobile', desc: 'Cross-platform app with sync and offline.' },
+  { img: '/dashboard.webp', title: 'FinTech Dashboard', tag: 'SaaS', desc: 'Real-time analytics and reporting platform.' },
+  { img: '/ecommerce.webp', title: 'E-commerce Brand', tag: 'E-commerce', desc: 'High-converting store with custom checkout.' },
+  { img: '/health.webp', title: 'Health & Fitness App', tag: 'Mobile', desc: 'Cross-platform app with sync and offline.' },
 ];
 
 const testimonials = [
-  { quote: 'GhaythApp delivered our product on time and above expectations. True partners.', name: 'Sarah Chen', role: 'Founder, TechFlow', avatar: 'SC' },
-  { quote: 'Clean code, clear communication, and a team that actually cares about the outcome.', name: 'Marcus Webb', role: 'CTO, ScaleUp', avatar: 'MW' },
-  { quote: 'From idea to launch in 12 weeks. They understood our vision from day one.', name: 'Elena Rodriguez', role: 'CEO, HealthFirst', avatar: 'ER' },
+  { quote: 'GhaythApp delivered our product on time and above expectations. True partners.', name: 'Mohamed Ghayth', role: 'Founder, TechFlow', avatar: 'SC' },
+  { quote: 'Clean code, clear communication, and a team that actually cares about the outcome.', name: 'Ahmed Alaa', role: 'CTO, ScaleUp', avatar: 'MW' },
+  { quote: 'From idea to launch in 12 weeks. They understood our vision from day one.', name: 'Said fathy', role: 'CEO, HealthFirst', avatar: 'ER' },
 ];
 
 export function HomePage() {
@@ -55,71 +56,89 @@ export function HomePage() {
     <>
       {/* ——— Hero ——— */}
       <Section className="relative overflow-hidden px-4 py-20 md:py-28 lg:py-36">
-        <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/30 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl" />
-        <div className="relative max-w-5xl mx-auto text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-indigo-400 font-medium text-sm uppercase tracking-wider mb-4"
-          >
-            Your partner in digital innovation
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight"
-          >
-            We build powerful{' '}
-            <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">websites</span>
-            {' '}& apps for modern businesses
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto"
-          >
-            Websites, mobile apps, and SaaS platforms—built with Next.js, React, Laravel, Flutter, and modern cloud. We turn ideas into products that scale.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-400 transition"
-            >
-              Start your project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 bg-slate-800/50 px-6 py-3.5 text-base font-medium text-slate-200 hover:bg-slate-700/50 hover:border-slate-500 transition"
-            >
-              View our work
-            </Link>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 rounded-2xl border border-slate-700/50 bg-slate-800/40 backdrop-blur-xl p-4 shadow-2xl shadow-black/20 max-w-4xl mx-auto overflow-hidden"
-          >
-            <div className="aspect-video bg-slate-900/80 rounded-xl flex items-center justify-center">
-              <div className="flex items-center gap-3 text-slate-500">
-                <LayoutDashboard className="w-12 h-12 text-indigo-500/60" />
-                <span className="text-sm font-medium">Dashboard & code—what we build</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </Section>
+  <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/30 via-transparent to-transparent" />
+  <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl" />
+  <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-violet-500/15 rounded-full blur-3xl" />
+  
+  <div className="relative max-w-5xl mx-auto text-center">
+    <motion.p
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="text-indigo-400 font-medium text-sm uppercase tracking-wider mb-4"
+    >
+      Your partner in digital innovation
+    </motion.p>
+    
+    <motion.h1
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight"
+    >
+      We build powerful{' '}
+      <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">
+        websites
+      </span>
+      {' '}& apps for modern businesses
+    </motion.h1>
+    
+    <motion.p
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="mt-6 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto"
+    >
+      Websites, mobile apps, and SaaS platforms—built with Next.js, React, Laravel, Flutter, and modern cloud. We turn ideas into products that scale.
+    </motion.p>
+    
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
+    >
+      <Link
+        href="/contact"
+        className="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-500 px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-indigo-500/25 hover:bg-indigo-400 transition"
+      >
+        Start your project
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+      <Link
+        href="/portfolio"
+        className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-600 bg-slate-800/50 px-6 py-3.5 text-base font-medium text-slate-200 hover:bg-slate-700/50 hover:border-slate-500 transition"
+      >
+        View our work
+      </Link>
+    </motion.div>
+    
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.5 }}
+      className="mt-16 rounded-2xl border border-slate-700/50 bg-slate-800/40 backdrop-blur-xl p-4 shadow-2xl shadow-indigo-500/10 max-w-4xl mx-auto overflow-hidden"
+    >
+      <div className="relative aspect-video bg-gradient-to-br from-slate-900/80 to-slate-950/80 rounded-xl overflow-hidden group">
+        {/* Main Image - Now fills the container */}
+        <Image 
+          src="/startup.webp" 
+          alt="Dashboard Preview - Modern web application interface" 
+          fill
+          className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 896px"
+          priority
+        />
+        
+        {/* Gradient overlay for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
+        
+        {/* Subtle hover glow */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/0 via-transparent to-purple-500/0 group-hover:from-indigo-500/10 group-hover:to-purple-500/10 transition-all duration-500" />
+      </div>
+    </motion.div>
+  </div>
+</Section>
 
       {/* ——— Services ——— */}
       <Section className="px-4 py-20 md:py-28" id="services">
@@ -284,6 +303,7 @@ export function HomePage() {
                 <GlassCard hoverGlow className="overflow-hidden h-full flex flex-col">
                   <div className="aspect-video bg-slate-800/50 flex items-center justify-center">
                     <Sparkles className="w-12 h-12 text-indigo-500/40" />
+                    <Image src={item.img} alt={item.title} fill className="object-cover object-center" />
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <span className="text-xs font-medium text-indigo-400 uppercase tracking-wider">{item.tag}</span>
