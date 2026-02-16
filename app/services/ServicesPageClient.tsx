@@ -139,7 +139,7 @@ export function ServicesPageClient() {
               <div className="flex-1">
                 <GlassCard
                   className="aspect-video overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300 relative"
-                  onClick={() => setExpandedImage(service.id)}
+                  
                 >
                   <Image
                     src={getServiceImage(service.id)}
@@ -163,14 +163,13 @@ export function ServicesPageClient() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
-            onClick={() => setExpandedImage(null)}
+            
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               className="relative w-full max-w-6xl max-h-[90vh] aspect-video"
-              onClick={(e) => e.stopPropagation()}
             >
               <Image
                 src={getServiceImage(expandedImage)}
