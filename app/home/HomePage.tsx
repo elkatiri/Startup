@@ -122,7 +122,7 @@ export function HomePage() {
       <div className="relative aspect-video bg-gradient-to-br from-slate-900/80 to-slate-950/80 rounded-xl overflow-hidden group">
         {/* Main Image - Now fills the container */}
         <Image 
-          src="/StartUp.webp" 
+          src="/startup.webp" 
           alt="Dashboard Preview - Modern web application interface" 
           fill
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
