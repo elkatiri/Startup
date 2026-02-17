@@ -2,20 +2,15 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Globe,
-  Smartphone,
-  Layers,
-  Box,
-  Check,
-  X,
-} from 'lucide-react';
+import { Globe, Smartphone, Layers, Box, Check, X } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
-import mobileService from '@/public/mobileService.webp';
-import webService from '@/public/webService.webp';
-import saasService from '@/public/saasService.webp';
-import customService from '@/public/customService.webp';
+import { useState, useEffect } from 'react';
+
+import mobileService from '@/public/health.webp';
+import webService from '@/public/dashboard.webp';
+import saasService from '@/public/ecommerce.webp';
+import customService from '@/public/custom.webp';
+
 import { Section } from '../components/ui/section';
 import { GlassCard } from '../components/ui/glass-card';
 
@@ -25,163 +20,191 @@ const services = [
     title: 'Website Development',
     icon: Globe,
     headline: 'Fast, scalable websites and web apps',
-    body: 'From marketing sites to complex web applications. We use Next.js and React for performance and SEO, with clean architecture that scales.',
-    benefits: ['Responsive, accessible UI', 'SEO and performance optimized', 'CMS or headless options', 'Analytics and conversion tracking'],
+    body: 'From marketing sites to complex web applications built with modern stacks.',
+    benefits: [
+      'Responsive UI',
+      'SEO optimized',
+      'Headless CMS ready',
+      'Analytics ready',
+    ],
   },
   {
     id: 'mobile',
     title: 'Mobile App Development',
     icon: Smartphone,
     headline: 'Native and cross-platform apps',
-    body: 'iOS and Android apps built with Flutter or React Native when it fits—or native when you need maximum performance and platform polish.',
-    benefits: ['Single codebase or native', 'Offline and push support', 'App Store & Play Store ready', 'Ongoing maintenance'],
+    body: 'High-performance mobile apps using Flutter or React Native.',
+    benefits: [
+      'Single codebase',
+      'Push notifications',
+      'Offline support',
+      'Store deployment',
+    ],
   },
   {
     id: 'saas',
     title: 'SaaS MVP Building',
     icon: Layers,
     headline: 'From idea to launch-ready product',
-    body: 'We help startups validate and ship their first version: auth, billing, dashboard, and core workflows—built to scale from day one.',
-    benefits: ['Auth, billing, teams', 'Multi-tenant architecture', 'Admin and analytics', 'Iterate with agility'],
+    body: 'We help StartUp s validate and ship fast.',
+    benefits: [
+      'Auth & billing',
+      'Multi-tenant',
+      'Admin dashboard',
+      'Analytics',
+    ],
   },
   {
     id: 'custom',
     title: 'Custom Platforms',
     icon: Box,
     headline: 'Tailored digital solutions',
-    body: 'Internal tools, marketplaces, dashboards, or industry-specific platforms. We design and build exactly what your business needs.',
-    benefits: ['Custom workflows', 'Integrations and APIs', 'Security and compliance', 'Scalable architecture'],
+    body: 'Custom dashboards, tools, and internal systems.',
+    benefits: [
+      'Custom workflows',
+      'API integrations',
+      'Secure architecture',
+      'Scalable infra',
+    ],
   },
-];
-
-const comparison = [
-  { item: 'Dedicated team', us: true, freelancers: false, agencies: true },
-  { item: 'Fixed scope & timeline', us: true, freelancers: false, agencies: false },
-  { item: 'Modern tech stack', us: true, freelancers: true, agencies: true },
-  { item: 'Startup-friendly pricing', us: true, freelancers: true, agencies: false },
-  { item: 'Single point of contact', us: true, freelancers: true, agencies: true },
-  { item: 'Post-launch support', us: true, freelancers: false, agencies: true },
 ];
 
 export function ServicesPageClient() {
   const [expandedImage, setExpandedImage] = useState<string | null>(null);
 
-  const getServiceImage = (id: string) => {
+  const getImage = (id: string) => {
     switch (id) {
       case 'web': return webService;
       case 'mobile': return mobileService;
       case 'saas': return saasService;
-      case 'custom': return customService;
-      default: return webService;
+      default: return customService;
     }
   };
 
+  // ESC close
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setExpandedImage(null);
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, []);
+
   return (
     <>
-      <Section className="px-4 pt-16 pb-20 md:pt-24 md:pb-28">
+      {/* HERO */}
+      <Section className="px-4 pt-20 pb-24">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-indigo-400 font-medium text-sm uppercase tracking-wider"
-          >
+          <p className="text-indigo-400 text-sm uppercase tracking-wider">
             Services
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 }}
-            className="mt-2 text-4xl md:text-5xl font-bold text-white"
-          >
+          </p>
+          <h1 className="mt-3 text-5xl font-bold text-white">
             What we build for you
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-lg text-slate-400"
-          >
-            Websites, mobile apps, SaaS products, and custom platforms—with one team from idea to launch.
-          </motion.p>
+          </h1>
+          <p className="mt-4 text-slate-400">
+            Websites, mobile apps, SaaS products, and custom platforms.
+          </p>
         </div>
       </Section>
 
+      {/* SERVICES */}
       {services.map((service, i) => (
         <Section
           key={service.id}
-          id={service.id}
-          className={`px-4 py-16 md:py-24 ${i % 2 === 1 ? 'bg-slate-900/20' : ''}`}
+          className={`px-4 py-20 ${i % 2 ? 'bg-slate-900/30' : ''}`}
         >
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              className={`flex flex-col gap-12 md:gap-16 ${i % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} md:items-center`}
-            >
-              <div className="flex-1">
-                <div className="rounded-2xl bg-indigo-500/10 border border-indigo-500/20 w-14 h-14 flex items-center justify-center mb-6">
-                  <service.icon className="w-7 h-7 text-indigo-400" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white">{service.title}</h2>
-                <p className="mt-2 text-lg text-indigo-200/90 font-medium">{service.headline}</p>
-                <p className="mt-4 text-slate-400 leading-relaxed">{service.body}</p>
-                <ul className="mt-6 space-y-3">
-                  {service.benefits.map((b) => (
-                    <li key={b} className="flex items-center gap-3 text-slate-300">
-                      <Check className="w-5 h-5 text-indigo-400 flex-shrink-0" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-14 items-center">
+
+            {/* TEXT */}
+            <div className="flex-1">
+              <div className="w-14 h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-6">
+                <service.icon className="text-indigo-400 w-6 h-6" />
               </div>
 
-              <div className="flex-1">
-                <GlassCard
-                  className="aspect-video overflow-hidden cursor-pointer hover:scale-[1.02] transition-transform duration-300 relative"
-                  
-                >
-                  <Image
-                    src={getServiceImage(service.id)}
-                    alt={service.title}
-                    fill
-                    className="object-contain p-6 md:p-8"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </GlassCard>
-              </div>
-            </motion.div>
+              <h2 className="text-3xl font-bold text-white">{service.title}</h2>
+              <p className="text-indigo-300 mt-2">{service.headline}</p>
+              <p className="text-slate-400 mt-4">{service.body}</p>
+
+              <ul className="mt-6 space-y-3">
+                {service.benefits.map((b) => (
+                  <li key={b} className="flex gap-3 text-slate-300">
+                    <Check className="text-indigo-400 w-5 h-5" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* IMAGE */}
+            <div
+              className="flex-1 cursor-pointer"
+              onClick={() => setExpandedImage(service.id)}
+            >
+              <GlassCard className="aspect-video overflow-hidden relative group">
+                <Image
+                  src={getImage(service.id)}
+                  alt={service.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition duration-500"
+                  sizes="(max-width:768px) 100vw, 50vw"
+                />
+
+                {/* overlay */}
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition" />
+              </GlassCard>
+            </div>
+
           </div>
         </Section>
       ))}
 
-      {/* Image Lightbox Modal */}
+      {/* LIGHTBOX */}
       <AnimatePresence>
         {expandedImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4"
-            
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-lg p-6"
+            onClick={() => setExpandedImage(null)}
           >
+            {/* close button */}
+            <button
+              className="absolute top-6 right-6 bg-white/10 hover:bg-white/20 p-3 rounded-full"
+              onClick={() => setExpandedImage(null)}
+            >
+              <X className="text-white w-5 h-5" />
+            </button>
+
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative w-full max-w-6xl max-h-[90vh] aspect-video"
+              exit={{ scale: 0.85, opacity: 0 }}
+              className="relative w-full max-w-6xl aspect-video"
+              onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={getServiceImage(expandedImage)}
-                alt="Expanded view"
+                src={getImage(expandedImage)}
+                alt="Preview"
                 fill
                 className="object-contain"
-                sizes="90vw"
+                priority
               />
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* CTA */}
+      <Section className="px-4 py-20 text-center">
+        <p className="text-slate-400">Ready to build something amazing?</p>
+        <Link
+          href="/contact"
+          className="inline-block mt-4 bg-indigo-500 hover:bg-indigo-400 px-6 py-3 rounded-xl font-semibold text-white"
+        >
+          Get in touch
+        </Link>
+      </Section>
     </>
   );
 }

@@ -2,20 +2,42 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Section } from '../components/ui/section';
 import { GlassCard } from '../components/ui/glass-card';
+import Image from 'next/image';
+import dashboard from '@/public/dashboard.webp';
+import ecommerce from '@/public/ecommerce.webp';
+import health from '@/public/health.webp';
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } };
 const container = { visible: { transition: { staggerChildren: 0.08 } } };
 
 const projects = [
-  { slug: 'fintech-dashboard', title: 'FinTech Dashboard', tag: 'SaaS', desc: 'Real-time analytics and reporting platform for a B2B finance startup. Next.js, React, and custom charts.', year: '2025' },
-  { slug: 'ecommerce-brand', title: 'E-commerce Brand Store', tag: 'E-commerce', desc: 'High-converting store with custom checkout, subscriptions, and inventory sync. Headless CMS + Laravel.', year: '2025' },
-  { slug: 'health-fitness-app', title: 'Health & Fitness App', tag: 'Mobile', desc: 'Cross-platform app with workout plans, progress tracking, and offline sync. Flutter.', year: '2024' },
-  { slug: 'startup-mvp', title: 'Startup MVP Platform', tag: 'SaaS', desc: 'End-to-end MVP: auth, billing, dashboard, and core workflows in 10 weeks.', year: '2024' },
-  { slug: 'internal-tooling', title: 'Internal Operations Tool', tag: 'Custom', desc: 'Custom dashboard and workflows for a scaling operations team. React + Node API.', year: '2024' },
-  { slug: 'marketplace', title: 'Niche Marketplace', tag: 'E-commerce', desc: 'Two-sided marketplace with search, payments, and seller onboarding.', year: '2023' },
+  {
+    slug: 'fintech-dashboard',
+    title: 'FinTech Dashboard',
+    tag: 'SaaS',
+    desc: 'Real-time analytics and reporting platform for a B2B finance StartUp . Next.js, React, and custom charts.',
+    year: '2025',
+    image: dashboard,
+  },
+  {
+    slug: 'ecommerce-brand',
+    title: 'E-commerce Brand Store',
+    tag: 'E-commerce',
+    desc: 'High-converting store with custom checkout, subscriptions, and inventory sync. Headless CMS + Laravel.',
+    year: '2025',
+    image: ecommerce,
+  },
+  {
+    slug: 'health-fitness-app',
+    title: 'Health & Fitness App',
+    tag: 'Mobile',
+    desc: 'Cross-platform app with workout plans, progress tracking, and offline sync. Flutter.',
+    year: '2024',
+    image: health,
+  },
 ];
 
 export function PortfolioPageClient() {
@@ -44,7 +66,7 @@ export function PortfolioPageClient() {
             transition={{ delay: 0.1 }}
             className="mt-4 text-lg text-slate-400"
           >
-            SaaS, e-commerce, mobile, and custom platforms we’ve shipped for founders and teams.
+            SaaS, e-commerce, mobile, and custom platforms we've shipped for founders and teams.
           </motion.p>
         </div>
       </Section>
@@ -61,12 +83,23 @@ export function PortfolioPageClient() {
             {projects.map((project) => (
               <motion.div key={project.slug} variants={fadeUp}>
                 <GlassCard hoverGlow className="overflow-hidden h-full flex flex-col group">
-                  <div className="aspect-video bg-slate-800/50 flex items-center justify-center">
-                    <Sparkles className="w-14 h-14 text-indigo-500/40 group-hover:text-indigo-500/60 transition-colors" />
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                    {/* Tag badge overlay */}
+                    <div className="absolute top-3 left-3">
+                      <span className="text-xs font-medium text-white bg-indigo-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                        {project.tag}
+                      </span>
+                    </div>
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs font-medium text-indigo-400 uppercase tracking-wider">{project.tag}</span>
                       <span className="text-xs text-slate-500">{project.year}</span>
                     </div>
                     <h2 className="mt-2 text-lg font-semibold text-white">{project.title}</h2>

@@ -10,7 +10,7 @@ const founder = {
   name: 'Alex Morgan',
   role: 'Founder & CEO',
   initials: 'AM',
-  bio: 'Alex started GhaythApp to be the development partner he wished he had as a founder—one that ships fast, communicates clearly, and cares about the product as much as the client.',
+  bio: 'Alex started StartUp to be the development partner he wished he had as a founder—one that ships fast, communicates clearly, and cares about the product as much as the client.',
 };
 
 const team = [
@@ -20,17 +20,17 @@ const team = [
 ];
 
 const timeline = [
-  { year: '2022', title: 'Founded', body: 'GhaythApp started as a small studio focused on helping startups ship their first product.' },
+  { year: '2022', title: 'Founded', body: 'StartUp started as a small studio focused on helping StartUp s ship their first product.' },
   { year: '2023', title: 'First launches', body: 'We delivered our first SaaS MVPs and mobile apps. Word of mouth brought more founders.' },
   { year: '2024', title: 'Scale', body: 'Grew the team and expanded into e-commerce and custom platforms. Kept the same quality bar.' },
-  { year: '2025', title: 'Today', body: 'We\'re a premium development partner for startups and scale-ups—building the future, one app at a time.' },
+  { year: '2025', title: 'Today', body: 'We\'re a premium development partner for StartUp s and scale-ups—building the future, one app at a time.' },
 ];
 
 const values = [
   { icon: Target, title: 'Quality', body: 'We build things that last. Clean code, solid architecture, and attention to detail.' },
   { icon: Sparkles, title: 'Innovation', body: 'We use modern tech and best practices so your product stays ahead of the curve.' },
   { icon: Heart, title: 'Transparency', body: 'Clear communication, honest timelines, and no surprises. You\'re always in the loop.' },
-  { icon: Zap, title: 'Startup mindset', body: 'We move fast, iterate, and treat your success as our success.' },
+  { icon: Zap, title: 'StartUp  mindset', body: 'We move fast, iterate, and treat your success as our success.' },
 ];
 
 export function AboutPageClient() {
@@ -83,10 +83,10 @@ export function AboutPageClient() {
             className="mt-6 prose prose-invert prose-slate max-w-none text-slate-400 leading-relaxed space-y-4"
           >
             <p>
-              GhaythApp was born from a simple observation: too many founders were stuck between expensive agencies and unreliable freelancers. We wanted to be the middle path—a dedicated team that ships like a product company and cares like a partner.
+              StartUp was born from a simple observation: too many founders were stuck between expensive agencies and unreliable freelancers. We wanted to be the middle path—a dedicated team that ships like a product company and cares like a partner.
             </p>
             <p>
-              We started by building our own products and then opened the studio to help others. Today we work with startups and scale-ups on websites, mobile apps, and SaaS platforms—using Next.js, React, Laravel, Flutter, and modern cloud tools. Our goal hasn’t changed: turn your idea into a product that users love and that you can scale.
+              We started by building our own products and then opened the studio to help others. Today we work with StartUp s and scale-ups on websites, mobile apps, and SaaS platforms—using Next.js, React, Laravel, Flutter, and modern cloud tools. Our goal hasn’t changed: turn your idea into a product that users love and that you can scale.
             </p>
           </motion.div>
         </div>

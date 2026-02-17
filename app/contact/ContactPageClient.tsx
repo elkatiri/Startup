@@ -146,8 +146,8 @@ export function ContactPageClient() {
             <GlassCard className="p-6">
               <Mail className="w-8 h-8 text-indigo-400 mb-3" />
               <h3 className="font-semibold text-white">Email</h3>
-              <a href="mailto:support@ghaythapp.com" className="mt-1 text-slate-400 hover:text-indigo-400 transition text-sm block">
-                support@ghaythapp.com
+              <a href="mailto:support@StartUp.com" className="mt-1 text-slate-400 hover:text-indigo-400 transition text-sm block">
+                support@StartUp.com
               </a>
             </GlassCard>
             <GlassCard className="p-6">

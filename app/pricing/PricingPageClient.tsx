@@ -221,7 +221,7 @@ export function PricingPageClient() {
         >
           <p className="text-lg font-semibold text-white">30-day money-back guarantee</p>
           <p className="mt-2 text-slate-400 text-sm">
-            Try GhaythApp risk-free. If you&apos;re not satisfied, we&apos;ll refund you—no questions asked.
+            Try StartUp risk-free. If you&apos;re not satisfied, we&apos;ll refund you—no questions asked.
           </p>
         </motion.div>
       </Section>

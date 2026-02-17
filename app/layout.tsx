@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/footer/page";
 import Navbar from "./components/navbar/page";
+import { FloatingContact } from "./components/ui/floating-contact";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GhaythApp — Your partner in digital innovation",
+  title: "StartUp — Your partner in digital innovation",
   description: "We build powerful websites, mobile apps, and SaaS platforms for modern businesses. Next.js, React, Laravel, Flutter.",
   openGraph: {
-    title: "GhaythApp — Your partner in digital innovation",
+    title: "StartUp — Your partner in digital innovation",
     description: "We build powerful websites, mobile apps, and SaaS platforms for modern businesses.",
     type: "website",
   },
@@ -39,6 +40,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <FloatingContact />
       </body>
     </html>
   );

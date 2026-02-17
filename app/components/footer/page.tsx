@@ -42,9 +42,9 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: 'Twitter', icon: TwitterIcon, href: 'https://twitter.com/ghaythapp' },
-  { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com/company/ghaythapp' },
-  { name: 'GitHub', icon: GithubIcon, href: 'https://github.com/ghaythapp' },
+  { name: 'Twitter', icon: TwitterIcon, href: 'https://twitter.com' },
+  { name: 'LinkedIn', icon: LinkedinIcon, href: 'https://linkedin.com' },
+  { name: 'GitHub', icon: GithubIcon, href: 'https://github.com/elkatiri' },
 ];
 
 export default function Footer() {
@@ -58,7 +58,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-8">
           <Link href="/" className="flex items-center gap-2">
             <Sparkles className="w-7 h-7 text-indigo-400" />
-            <span className="text-2xl font-bold text-[color:var(--heading)]">GhaythApp</span>
+            <span className="text-2xl font-bold text-[color:var(--heading)]">StartUp</span>
           </Link>
 
           <div className="flex gap-3">
@@ -130,7 +130,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[color:var(--border)] mt-12 pt-6 text-sm flex flex-col md:flex-row justify-between text-slate-500">
-          <p>© 2026 GhaythApp. All rights reserved.</p>
+          <p>© 2026 StartUp. All rights reserved.</p>
           <div className="flex gap-4 mt-2 md:mt-0">
             <Link href="/privacy" className="hover:text-slate-300">Privacy</Link>
             <Link href="/terms" className="hover:text-slate-300">Terms</Link>

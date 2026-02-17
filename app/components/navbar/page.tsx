@@ -33,7 +33,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setMounted(true);
-    const saved = (typeof window !== 'undefined' && window.localStorage.getItem('ghaythapp-theme')) as
+    const saved = (typeof window !== 'undefined' && window.localStorage.getItem('StartUp-theme')) as
       | 'dark'
       | 'light'
       | null;
@@ -46,7 +46,7 @@ export default function Navbar() {
     const next = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
     document.documentElement.dataset.theme = next;
-    window.localStorage.setItem('ghaythapp-theme', next);
+    window.localStorage.setItem('StartUp-theme', next);
   }
 
   // ------------------------------------------------------------------
@@ -81,7 +81,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-indigo-300" />
             <span className="text-lg font-bold text-slate-200">
-              GhaythApp
+              StartUp
             </span>
           </Link>
 

@@ -46,8 +46,8 @@ const portfolioItems = [
 ];
 
 const testimonials = [
-  { quote: 'GhaythApp delivered our product on time and above expectations. True partners.', name: 'Mohamed Ghayth', role: 'Founder, TechFlow', avatar: 'SC' },
-  { quote: 'Clean code, clear communication, and a team that actually cares about the outcome.', name: 'Ahmed Alaa', role: 'CTO, ScaleUp', avatar: 'MW' },
+  { quote: 'StartUp delivered our product on time and above expectations. True partners.', name: 'Mohamed Ghayth', role: 'Founder, TechFlow', avatar: 'SC' },
+  { quote: 'Clean code, clear communication, and a team that actually cares about the outcome.', name: 'Ahmed elkatri', role: 'CTO, ScaleUp', avatar: 'MW' },
   { quote: 'From idea to launch in 12 weeks. They understood our vision from day one.', name: 'Said fathy', role: 'CEO, HealthFirst', avatar: 'ER' },
 ];
 
@@ -122,7 +122,7 @@ export function HomePage() {
       <div className="relative aspect-video bg-gradient-to-br from-slate-900/80 to-slate-950/80 rounded-xl overflow-hidden group">
         {/* Main Image - Now fills the container */}
         <Image 
-          src="/startup.webp" 
+          src="/StartUp.webp" 
           alt="Dashboard Preview - Modern web application interface" 
           fill
           className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
@@ -298,21 +298,30 @@ export function HomePage() {
             variants={container}
             className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
           >
-            {portfolioItems.map((item) => (
-              <motion.div key={item.title} variants={fadeUp}>
-                <GlassCard hoverGlow className="overflow-hidden h-full flex flex-col">
-                  <div className="aspect-video bg-slate-800/50 flex items-center justify-center">
-                    <Sparkles className="w-12 h-12 text-indigo-500/40" />
-                    <Image src={item.img} alt={item.title} fill className="object-cover object-center" />
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <span className="text-xs font-medium text-indigo-400 uppercase tracking-wider">{item.tag}</span>
-                    <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-slate-400 text-sm flex-1">{item.desc}</p>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            ))}
+                    {portfolioItems.map((item) => (
+          <motion.div key={item.title} variants={fadeUp}>
+            <GlassCard hoverGlow className="overflow-hidden h-full flex flex-col group">
+              <div className="relative aspect-video overflow-hidden">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute top-3 left-3">
+                  <span className="text-xs font-medium text-white bg-indigo-500/80 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                    {item.tag}
+                  </span>
+                </div>
+              </div>
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-1 text-slate-400 text-sm flex-1">{item.desc}</p>
+              </div>
+            </GlassCard>
+          </motion.div>
+        ))}
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 12 }}

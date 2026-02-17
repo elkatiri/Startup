@@ -134,7 +134,7 @@ export function FeaturesPageClient() {
             viewport={{ once: true }}
             className="text-3xl font-bold text-white text-center"
           >
-            GhaythApp vs traditional tools
+            StartUp vs traditional tools
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
@@ -154,7 +154,7 @@ export function FeaturesPageClient() {
               <thead>
                 <tr className="border-b border-slate-700/50">
                   <th className="text-left py-4 px-6 text-slate-400 font-medium">Feature</th>
-                  <th className="text-center py-4 px-6 text-indigo-400 font-medium">GhaythApp</th>
+                  <th className="text-center py-4 px-6 text-indigo-400 font-medium">StartUp</th>
                   <th className="text-center py-4 px-6 text-slate-400 font-medium">Traditional</th>
                 </tr>
               </thead>

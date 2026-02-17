@@ -2,10 +2,10 @@ import { Metadata } from 'next';
 import { PortfolioPageClient } from './PortfolioPageClient';
 
 export const metadata: Metadata = {
-  title: 'Portfolio — GhaythApp',
-  description: 'Selected projects: SaaS, e-commerce, mobile apps. Case studies and product launches by GhaythApp.',
+  title: 'Portfolio — StartUp',
+  description: 'Selected projects: SaaS, e-commerce, mobile apps. Case studies and product launches by StartUp .',
   openGraph: {
-    title: 'Portfolio — GhaythApp',
+    title: 'Portfolio — StartUp',
     description: 'Selected projects: SaaS, e-commerce, mobile apps.',
     type: 'website',
   },
