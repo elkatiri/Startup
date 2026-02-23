@@ -29,7 +29,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const currentPath = usePathname?.() ?? pathname; // works in both routers
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
 
   useEffect(() => {
     setMounted(true);
@@ -37,7 +37,7 @@ export default function Navbar() {
       | 'dark'
       | 'light'
       | null;
-    const initial: 'dark' | 'light' = saved ?? 'dark';
+    const initial: 'dark' | 'light' = saved ?? 'light';
     setTheme(initial);
     document.documentElement.dataset.theme = initial;
   }, []);
